@@ -89,3 +89,31 @@ Example output structure:
     {"page": 1, "text": "..."},
     {"page": 2, "text": "..."}
 ]
+___________________________________________________
+## Step 4: Text Chunking
+
+In this step, I implemented text chunking. The extracted page-level text is split into smaller overlapping chunks.
+
+Chunking is necessary because the full PDF text can be too long to search or send directly to a language model. Instead, the system will search over smaller pieces of text and retrieve only the most relevant ones.
+
+Each chunk contains:
+
+- a unique chunk id
+- the source page number
+- the chunk text
+
+I used a character-based chunking approach with:
+
+- `chunk_size = 900`
+- `overlap = 150`  these numbers are easily changeable depending situations.
+
+The overlap helps prevent important information from being lost when a sentence or topic is split between two chunks.
+
+Example chunk structure:
+
+```python
+{
+    "chunk_id": 0,
+    "page": 1,
+    "text": "..."
+}
