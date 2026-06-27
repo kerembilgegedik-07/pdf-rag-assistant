@@ -67,4 +67,25 @@ Scanned PDFs may not work properly because they require OCR. Maybe I 'll add it 
 Keeping page numbers is important for source-grounded answers.
 The first version will use a fixed PDF file. (chess_handbook pdf)
 Later versions will support user-uploaded PDFs.
+
+pip freeze > requirements.txt --> this comment provides that using python packages is written in requirements.txt  .
+If somebody download my this project from github he can install same python packages with : pip install -r requirements.txt
+
 ___________________________________________________
+## Step 3: PDF Text Extraction
+
+In this step, I implemented the first part of the RAG pipeline: extracting text from a PDF document.
+
+I used the `pypdf` library because it allows reading text-based PDF files page by page.
+
+The function `extract_text_from_pdf` takes a PDF path as input and returns a list of dictionaries. Each dictionary contains the page number and the extracted text.
+
+This page-level structure is important because later the assistant should show source pages when answering user questions.
+
+Example output structure:
+
+```python
+[
+    {"page": 1, "text": "..."},
+    {"page": 2, "text": "..."}
+]
