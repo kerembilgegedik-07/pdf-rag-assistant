@@ -259,3 +259,29 @@ A NumPy array is useful for storing and comparing many vectors.
 The shape (46, 384) means 46 chunks and 384 numbers per chunk.
 The first model download can take longer, but later runs should be faster.
 The Hugging Face symlink warning on Windows is not a critical issue. It only means caching may use slightly more disk space.
+
+
+## Step 6: Semantic Retrieval
+
+In this step, I implemented semantic retrieval.
+
+The goal of semantic retrieval is to find the most relevant PDF chunks for a user question.
+
+The process is:
+
+1. Convert the user question into an embedding vector.
+2. Compare the question embedding with all chunk embeddings.
+3. Calculate similarity scores.
+4. Sort chunks by similarity score.
+5. Return the top-k most relevant chunks.
+
+Because the chunk embeddings and question embedding are normalized, I used dot product as a cosine similarity-like comparison.
+
+Example:
+
+```text
+Question: What is castling?
+
+Top retrieved chunks:
+1. Page 2 - similarity score: ...
+2. Page 3 - similarity score: ...
