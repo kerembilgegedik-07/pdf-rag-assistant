@@ -285,3 +285,21 @@ Question: What is castling?
 Top retrieved chunks:
 1. Page 2 - similarity score: ...
 2. Page 3 - similarity score: ...
+
+
+## Step 7: Answer Generation
+
+In this step, I added a local answer generation model.
+
+After semantic retrieval, the system has the most relevant chunks for a user question. However, retrieval alone only returns text chunks. To turn these chunks into a direct answer, I added a generation step.
+
+The generation pipeline is:
+
+```text
+User question
+↓
+Retrieve relevant chunks
+↓
+Build context from chunks
+↓
+Generate answer using local model
